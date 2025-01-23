@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fake Matrimony Profile Detection</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url_for('static', filename = 'lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename = 'lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{ url_for('static', filename = 'css/style.css')}}" rel="stylesheet">
+</head>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid sticky-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark p-0">
+                <a href="{{url_for('home')}}" class="navbar-brand">
+                    <h1 class="text-white"><span class="text-dark">.</span>Profile Checker</h1>
+                </a>
+                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="" class="nav-item nav-link active">View this is mobile : <b>{{url}}</b></a>
+                        <a href="" class="nav-item nav-link">User: {{data}}</a>
+                    </div>
+                    <butaton type="button" class="btn text-white p-0 d-none d-lg-block" data-bs-toggle="modal"
+                        data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <div class="container-fluid pt-5 bg-primary hero-header mb-5">
+        <div class="container pt-5">
+            <div class="row g-5 pt-5">
+                <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                    <div class="btn btn-sm border rounded-pill text-white px-3 mb-3 animated slideInRight">Profile Checker</div>
+                    <h1 class="display-4 text-white mb-4 animated slideInRight">Prediction of Fake Profile in Matrimonial Sites</h1>
+                    <p class="text-white mb-4 animated slideInRight">Test and Validate the Machine learning applications to predict fake profiles in matrimonial sites to stay away from scams to brighten your future with perfect partner</p>
+                </div>
+                <div class="col-lg-6 align-self-end text-center text-lg-end">
+                    <img class="img-fluid" src="{{ url_for('static', filename = 'img/hero1.png')}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                    <h1 class="display-6 mb-4">Your Tests</h1>
+    <style>
+        
+        h1 {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+    
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 20px;
+        }
+    
+        th, td {
+          padding: 10px;
+          text-align: left;
+          border: 1px solid #428bca;
+        }
+    
+        th {
+          background-color: #f5f5f5;
+          font-weight: bold;
+        }
+    
+        .uploaded-image {
+          max-width: 150px;
+          max-height: 150px;
+          display: block;
+          margin-top: 10px;
+        }
+    
+        @media (max-width: 480px) {
+          th, td {
+            display: block;
+            width: 100%;
+          }
+        }
+    
+    
+        button:hover {
+          background-color: #45a049;
+        }
+      </style>
+        <table id="file-table">
+            <thead>
+                <tr>
+                    <th>Serial No.</th>
+                    <th>Caste</th>
+                    <th>Education</th>
+                    <th>Employment Sector</th>
+                    <th>Income</th>
+                    <th>Mother Tongue</th>
+                    <th>Occupation</th>
+                    <th>Releigon</th>
+                    <th>Prediction</th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in tests %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.castes }}</td>
+                    <td>{{ row.degrees  }}</td>
+                    <td>{{ row.employs  }}</td>
+                    <td>{{ row.incomes  }}</td>
+                    <td>{{ row.mothers  }}</td>
+                    <td>{{ row.occs  }}</td>
+                    <td>{{ row.religions  }}</td>
+                    <td>{{ row.prediction   }}</td>
+                    <td style="width:150px">{{ row.status }}</td>
+                </tr>
+                {% endfor %}
+                <tr id="row1">
+                    <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+                        <td></td><td>
+                        <div class="wow fadeInUp" data-wow-delay="0.5s">
+                            <select class="form-control" id="caste1" name="caste1" required>
+                                <option value="" disabled selected>Select Caste</option>
+                                {% for i in range(0,469) %}
+                                <option value="{{castes[i]}}">{{castes[i]}}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            </td><td>
+                            <div class=" wow fadeInUp" data-wow-delay="0.5s">
+
+                            <select class="form-control" id="degree" name="degree" required>
+                                <option value="" disabled selected>Select Degree</option>
+                                {% for i in range(0,70) %}
+                                <option value="{{degrees[i]}}">{{degrees[i]}}</option>
+                                {% endfor %}
+                              </select></div>
+                            </td><td>
+                              <div class=" wow fadeInUp" data-wow-delay="0.5s">
+                            <select class="form-control" id="employed1" name="employed1" required>
+                                <option value="" disabled selected>Select Employment Sector</option>
+                                {% for i in range(0,7) %}
+                                <option value="{{employs[i]}}">{{employs[i]}}</option>
+                                {% endfor %}
+                              </select></div>
+                            </td><td>
+                              <div class=" wow fadeInUp" data-wow-delay="0.5s">
+
+                            <select class="form-control" id="income1" name="income1" required>
+                                <option value="" disabled selected>Select Income</option>
+                                {% for i in range(0,28) %}
+                                <option value="{{incomes[i]}}">{{incomes[i]}}</option>
+                                {% endfor %}
+                              </select></div>
+                            </td><td>
+                              <div class=" wow fadeInUp" data-wow-delay="0.5s">
+                            <select class="form-control" id="mother1" name="mother1" required>
+                                <option value="" disabled selected>Select Mother Tongue</option>
+                                {% for i in range(0,57) %}
+                                <option value="{{mothers[i]}}">{{mothers[i]}}</option>
+                                {% endfor %}
+                              </select></div>
+                            </td><td>
+                              <div class=" wow fadeInUp" data-wow-delay="0.5s">
+                            <select class="form-control" id="occupation" name="occupation" required>
+                                <option value="" disabled selected>Select Occupation</option>
+                                {% for i in range(0,45) %}
+                                <option value="{{occs[i]}}">{{occs[i]}}</option>
+                                {% endfor %}
+                              </select></div>
+                            </td><td>
+                              <div class=" wow fadeInUp" data-wow-delay="0.5s">
+                            <select class="form-control" id="religion1" name="religion1" required>
+                                <option value="" disabled selected>Select Religion</option>
+                                {% for i in range(0,6) %}
+                                <option value="{{religions[i]}}">{{religions[i]}}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                        </td>
+                        <td><div id="loadingSpinner" class="spinner-border text-primary" role="status" style="display: none;">
+                            <span class="sr-only">Loading...</span></div>
+                            <button id="showOutput" class="btn btn-primary py-3 px-4" type="submit">Add</button></td>
+                    </form>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        </div>
+               
+    <script>
+        $(document).ready(function() {
+        $('#showOutput').click(function() {
+            $('#loadingSpinner').show();
+            $('#showOutput').hide();
+        });
+    });
+    </script>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+   
+    <!-- Hero End -->
+
+
+    <!-- Full Screen Search Start -->
+   
+    <!-- Full Screen Search End -->
+
+    
+    <!-- Service Start -->
+    
+    <!-- Service End -->
+    <script>
+        $(document).ready(function() {
+        $('#showOutput').click(function() {
+            $('#showOutput').fadeOut(500);
+            $('#inputImage').fadeOut(500);
+            $('#loadingSpinner').show();
+            $.ajax({
+                url: '/get_image',
+                type: 'GET',
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function(blob) {
+                    var url = URL.createObjectURL(blob);
+                    $('#loadingSpinner').hide();
+                    $('#imageContainer').html('<img src="' + url + '" alt="Output" data-wow-delay="0.5s">');
+                    $('#output_text').html('<h1 class="display-5 mb-5">Your Output</h1>')
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#showDataset').click(function() {
+            $('#loadingSpinnerdataset').show();
+            $('#showDataset').fadeOut(0.5);
+            $.ajax({
+                url: '/get_dataset',
+                type: 'GET',
+                success: function(response) {
+                    var data = response;
+                    $('#loadingSpinnerdataset').hide();
+                    $('#datasetContainer').html('<p  class="mb-4">'  + data + '</p');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#showpreprocess').click(function() {
+            $('#loadingSpinnerpreprocess').show();
+            $('#showpreprocess').fadeOut(0.5);
+            $.ajax({
+                url: '/start_preprocess',
+                type: 'GET',
+                success: function(response) {
+                    var data = response;
+                    $('#loadingSpinnerpreprocess').hide();
+                    $('#preprocessContainer').html('<p  class="mb-4">'  + data + '</p');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+            $(document).ready(function() {
+            $('#showmfcc').click(function() {
+                $('#loadingSpinnermfcc').show();
+                $('#showTrain').fadeOut(0.5);
+                $.ajax({
+                    url: '/start_mfcc',
+                    type: 'GET',
+                    success: function(response) {
+                        var data = response;
+                        $('#loadingSpinnermfcc').hide();
+                        $('#trainContainer').html('<p  class="mb-4">'  + data + '</p');
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+        </script>
+    <script>
+        $(document).ready(function() {
+        $('#showTrain').click(function() {
+            $('#loadingSpinnertrain').show();
+            $('#showTrain').fadeOut(0.5);
+            $.ajax({
+                url: '/start_training',
+                type: 'GET',
+                success: function(response) {
+                    var data = response;
+                    $('#loadingSpinnertrain').hide();
+                    $('#trainContainer').html('<p  class="mb-4">'  + data + '</p');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#showModel').click(function() {
+            $('#loadingSpinnermodel').show();
+            $('#showModel').fadeOut(0.5);
+            $.ajax({
+                url: '/save_model',
+                type: 'GET',
+                success: function(response) {
+                    var data = response;
+                    $('#loadingSpinnermodel').hide();
+                    $('#modelContainer').html('<p  class="mb-4">'  + data + '</p');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#showAccuracy').click(function() {
+            $('#showAccuracy').fadeOut(500);
+            $('#loadingSpinneraccuracy').show();
+            $.ajax({
+                url: '/show_accuracy',
+                type: 'GET',
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function(blob) {
+                    var url = URL.createObjectURL(blob);
+                    $('#loadingSpinneraccuracy').hide();
+                    $('#accuracyContainer').html('<img class="img-fluid" src="' + url + '"alt="">');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#showLoss').click(function() {
+            $('#showLoss').fadeOut(500);
+            $('#loadingSpinnerloss').show();
+            $.ajax({
+                url: '/show_loss',
+                type: 'GET',
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function(blob) {
+                    var url = URL.createObjectURL(blob);
+                    $('#loadingSpinnerloss').hide();
+                    $('#lossContainer').html('<img class="img-fluid" src="' + url + '"alt="">');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+    </script>
+    <script>
+        $(document).ready(function() {
+        $('#showMemo').click(function() {
+            $('#loadingSpinnermemo').show();
+            $('#showMemo').fadeOut(0.5);
+            $.ajax({
+                url: '/save_memo',
+                type: 'GET',
+                success: function(response) {
+                    var data = response;
+                    $('#loadingSpinnermemo').hide();
+                    $('#memoContainer').html('<p  class="mb-4">'  + data + '</p');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+    </script>
+
+  
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js')}}"></script>
+    <!-- Template Javascript -->
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</body>
+
+</html>
